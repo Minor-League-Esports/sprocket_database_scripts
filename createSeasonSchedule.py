@@ -7,6 +7,7 @@ from typing import Dict, List, Tuple, NamedTuple
 from dataclasses import dataclass
 
 @dataclass
+class MatchWeek:
     match_number: int
     start_date: str
     end_date: str
@@ -54,7 +55,7 @@ class SeasonScheduleCreator:
         season_end = match_weeks[-1].end_date
         
         mseason = objects.mSeason(
-            seasonNumber=18,
+            seasonNumber=19,
             start=season_start,
             end=season_end
         )
@@ -62,7 +63,7 @@ class SeasonScheduleCreator:
         sseason = objects.sScheduleGroup(
             start=season_start,
             end=season_end,
-            description=f"Season 18",
+            description=f"Season 19",
             typeId=1,
             gameId=7,
             parentGroupId=None
@@ -427,7 +428,13 @@ class SeasonScheduleCreator:
         return ScheduleReferences(mseason_id, sseason_id, week_refs, refs)
 
 if __name__ == '__main__':
-    credstr = os.environ.get('POSTGRES_CREDS')
-    engine = create_engine(f'postgresql+psycopg2://{credstr}@spr.ocket.cloud:30000/sprocket_main')
+    username = os.environ.get('DB_USER')
+    password = os.environ.get('DB_PASSWORD')
+    hostname = os.environ.get('DB_HOST')
+    port = os.environ.get('DB_PORT')
+    database = os.environ.get('DB_NAME')
+
+    connstr = f'postgresql+psycopg2://{username}:{password}@{hostname}:{port}/{database}'
+    engine = create_engine(connstr)
     creator = SeasonScheduleCreator(engine, dry_run=False)
-    creator.create_schedule('inputs/s18_schedule.csv')
+    creator.create_schedule('inputs/s19_schedule.csv')

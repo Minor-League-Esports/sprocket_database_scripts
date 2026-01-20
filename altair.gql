@@ -1,3 +1,0 @@
-
-curl -XPOST -H $SPROCKET_AUTH_HEADER -d '{"query": "mutation {reportMemberPlatformAccount(sprocketUserId: 5190, organizationId: 2, tracker: \"https://rocketleague.tracker.network/rocket-league/profile/epic/GG/overview\", platform: \"EPIC\", platformId: \"0c45fa10b5b54fd09a689676fd8b86e9\")}"}' --header "Content-Type: application/json" 'https://api.app.sprocket.gg/graphql'
-
