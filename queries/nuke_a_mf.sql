@@ -20,7 +20,7 @@ left join sprocket.member_platform_account mpa on
 left join sprocket.player p on
 	p."memberId" = m.id
 where
-	uaa."accountId" = '1121581950734438411';
+	uaa."accountId" = '1254661471502205109';
 
 create temp table all_mledb_ids as 
 select 
@@ -33,7 +33,7 @@ from
 left join mledb.player_account mlepa on
 	mlepa.player_id = mlep.id
 where
-	mlep.discord_id = '1121581950734438411';
+	mlep.discord_id = '1254661471502205109';
 
 delete
 from
