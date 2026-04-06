@@ -16,4 +16,4 @@ inner join sprocket.user_authentication_account uaa on
 inner join mledb.player mlep on
 	mlep.discord_id = uaa."accountId"
 where
-	mlep.mleid = 16892
+	mlep.mleid = 14925

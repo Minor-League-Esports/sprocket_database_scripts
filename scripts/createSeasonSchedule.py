@@ -40,7 +40,7 @@ class SeasonScheduleCreator:
         with open(filepath) as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                match_num = int(row['Match #'])
+                match_num = int(row['Match Number'])
                 if match_num not in match_weeks:
                     match_weeks[match_num] = MatchWeek(
                         match_number=match_num,
@@ -216,4 +216,4 @@ if __name__ == '__main__':
     connstr = f'postgresql+psycopg2://{username}:{password}@{hostname}:{port}/{database}'
     engine = create_engine(connstr)
     creator = SeasonScheduleCreator(engine, dry_run=True)
-    creator.create_schedule('inputs/s19_schedule.csv')
+    creator.create_schedule('../inputs/s19_schedule.csv')
