@@ -182,6 +182,15 @@ class mbFixtures(Base):
     sprocket_fixture = relationship('sScheduleFixture', back_populates='bridge_entry')
 
 
+class mbSeasonToScheduleGroup(Base):
+    __tablename__ = 'season_to_schedule_group'
+    __table_args__ = {'schema': 'mledb_bridge'}
+    # Primary Key
+    id = Column(Integer, primary_key=True)
+    seasonNumber = Column('seasonNumber', Integer, nullable=False) # Based on schema, FK assumed elsewhere
+    scheduleGroupId = Column('scheduleGroupId', Integer, nullable=False) # Based on schema, FK assumed elsewhere
+
+
 class mbMatchToScheduleGroup(Base):
     __tablename__ = 'match_to_schedule_group'
     __table_args__ = {'schema': 'mledb_bridge'}

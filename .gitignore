@@ -7,3 +7,6 @@ pyvenv.cfg
 inputs/
 .env
 .env.fish
+
+# Local env with real credentials — never commit
+env.fish
