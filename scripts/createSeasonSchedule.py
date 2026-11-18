@@ -123,7 +123,7 @@ class SeasonScheduleCreator:
             sgroup = objects.sScheduleGroup(
                 start=week.start_date,
                 end=week.end_date,
-                description=f"Week {week.match_number}",
+                description=f"Match {week.match_number}",
                 typeId=3,
                 gameId=7,
                 parentGroupId=sseason_id
@@ -201,6 +201,13 @@ class SeasonScheduleCreator:
                             fixture_id=mle_fixture_id
                         )
                         session.add(series)
+
+                        # Create bridge between series and match parent
+                        series_bridge = objects.mbSeriesToMatchParent(
+                            series=series,
+                            match_parent=match_parent
+                        )
+                        session.add(series_bridge)
 
 if __name__ == '__main__':
     username = os.environ.get('DB_USER')

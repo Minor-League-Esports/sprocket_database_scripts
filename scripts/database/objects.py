@@ -200,6 +200,19 @@ class mbMatchToScheduleGroup(Base):
     weekScheduleGroupId = Column('weekScheduleGroupId', Integer, nullable=False) # Based on schema, FK assumed elsewhere
 
 
+class mbSeriesToMatchParent(Base):
+    __tablename__ = 'series_to_match_parent'
+    __table_args__ = {'schema': 'mledb_bridge'}
+    # Primary Key and Foreign Keys
+    id = Column(Integer, primary_key=True)
+    seriesId = Column('seriesId', Integer, ForeignKey('mledb.series.id'), nullable=False) # Based on schema
+    matchParentId = Column('matchParentId', Integer, ForeignKey('sprocket.match_parent.id'), nullable=False) # Based on schema
+
+    # Relationships
+    series = relationship('mSeries')
+    match_parent = relationship('sMatchParent')
+
+
 # Example usage (updated for ORM)
 if __name__ == '__main__':
     print("Demonstrating ORM model instantiation:")

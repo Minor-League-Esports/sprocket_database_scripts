@@ -13,6 +13,7 @@ from database.objects import (
     mFixture,
     mSeries,
     mbFixtures,
+    mbSeriesToMatchParent,
     mMatch,
 )
 
@@ -347,6 +348,13 @@ with SessionLocal() as session:
                         # submission_timestamp, scheduled_time, scrim_id, stream_event_message_id are nullable
                     )
                     session.add(mledb_series)
+
+                    # Bridge each series to its Sprocket match parent (1:1 per CSV row)
+                    series_bridge = mbSeriesToMatchParent(
+                        series=mledb_series,
+                        match_parent=match_parent,
+                    )
+                    session.add(series_bridge)
 
                     # Bridge Path
                     # Create mbFixtures only when this Sprocket/MLEDB fixture pair has not

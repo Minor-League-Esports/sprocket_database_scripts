@@ -1,3 +1,6 @@
+-- This script is now covered by createSeasonSchedule.py and makePlayoffMatches.py
+-- The script remains here for posterity and future backfills of series_to_match_parent.
+-- Update the parentGroupId before running.
 WITH m2m AS (
   SELECT
     m.id AS sprocket_match,
